@@ -1,4 +1,4 @@
-import { After, AfterAll, BeforeAll, Given, When, Then, DataTable } from 'cucumber'
+import { After, AfterAll, BeforeAll, Given, When, Then, DataTable } from '@cucumber/cucumber'
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { MongoMemoryServer } from 'mongodb-memory-server-core';
@@ -16,8 +16,8 @@ let response;
 let token = '';
 
 BeforeAll(async() => {
-    mongod = new MongoMemoryServer();
-    process.env.MONGODB_URI = await mongod.getUri();
+    mongod = await MongoMemoryServer.create();
+    process.env.MONGODB_URI =  mongod.getUri();
     const moduleRef = await Test.createTestingModule({
         imports: [AppModule],
     }).compile();

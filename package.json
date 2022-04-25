@@ -42,6 +42,7 @@
     "rxjs": "latest"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^8.1.2",
     "@istanbuljs/nyc-config-typescript": "latest",
     "@nestjs/cli": "latest",
     "@nestjs/schematics": "latest",
@@ -58,7 +59,6 @@
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "chai": "latest",
-    "cucumber": "latest",
     "cucumber-pretty": "latest",
     "cucumber-tsflow": "latest",
     "eslint": "latest",
