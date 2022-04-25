@@ -2,15 +2,18 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Seeder } from './seeder';
 import { ConfigService } from '@nestjs/config';
-import * as helmet from 'helmet';
+import helmet from 'helmet';
 import MongoMemoryServer from 'mongodb-memory-server-core';
+import {Logger} from "@nestjs/common";
 
 async function bootstrap() {
 
   // Run with in-memory Mongo
-  if (process.env.INMEMORY_MONGODB === 'true') {
-    const mongod = new MongoMemoryServer();
-    process.env.MONGODB_URI = await mongod.getUri();
+  if (process.env.INMEMORY_MONGODB=== 'true') {
+    Logger.log(`In Memory MongoDB configuration`)
+    const mongod = await MongoMemoryServer.create();
+    process.env.MONGODB_URI = mongod.getUri();
+
   }
 
   const app = await NestFactory.create(AppModule);

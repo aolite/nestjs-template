@@ -19,8 +19,11 @@ export class UsersService {
         return newUser.save();
     }
 
-    exists(id: string): Promise<boolean> {
-        return this.userModel.exists({ username: id });
+    async exists(id: string): Promise<boolean> {
+        if (await this.userModel.exists({username: id})) {
+            return true;
+        }
+        return false;
     }
 
     findAll(): Promise<User[]> {

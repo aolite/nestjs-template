@@ -14,8 +14,7 @@ import { Seeder } from './seeder';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
-        uri: configService.get('MONGODB_URI', 'mongodb://localhost/db'),
-        useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false
+        uri: configService.get('MONGODB_URI', 'mongodb://localhost/db')
       }),
     }),
     AuthModule, UtilsModule, UsersModule,
