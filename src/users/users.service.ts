@@ -52,7 +52,7 @@ export class UsersService {
         return this.userModel.findOneAndDelete({ username: id }).exec();
     }
 
-    deleteAll() {
+    deleteAll(): Promise<any> {
         return this.userModel.deleteMany();
     }
 }

@@ -5,6 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import helmet from 'helmet';
 import MongoMemoryServer from 'mongodb-memory-server-core';
 import {Logger} from "@nestjs/common";
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
 
@@ -18,6 +19,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+
   app.use(helmet());
   app.enableCors({
     'origin': configService.get('ORIGIN', '*').split(','),
@@ -27,6 +29,19 @@ async function bootstrap() {
   });
   const seeder = app.get(Seeder);
   await seeder.seed();
+
+  const config = new DocumentBuilder()
+    .setTitle('Hello World example')
+    .setDescription('The Hello World API description')
+    .setVersion('1.0')
+    .addTag('users')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
   await app.listen(configService.get('PORT', 3000));
+
+  Logger.log(`Successful server init at port:`+ configService.get('PORT', 3000))
 }
 bootstrap();

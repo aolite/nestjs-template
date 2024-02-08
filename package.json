@@ -3,7 +3,9 @@
   "version": "0.0.2",
   "description": "NestJS project template with JWT authentication, user management and Cucumber e2e tests",
   "author": "http://rhizomik.net/~roberto/",
-  "contributors": ["Aitor Corchero"],
+  "contributors": [
+    "Aitor Corchero"
+  ],
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -30,6 +32,7 @@
     "@nestjs/mongoose": "latest",
     "@nestjs/passport": "latest",
     "@nestjs/platform-express": "latest",
+    "@nestjs/swagger": "^7.3.0",
     "bcrypt": "latest",
     "class-transformer": "latest",
     "class-validator": "latest",
@@ -43,7 +46,7 @@
     "rxjs": "latest"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "^8.1.2",
+    "@cucumber/cucumber": "^10.3.1",
     "@istanbuljs/nyc-config-typescript": "latest",
     "@nestjs/cli": "latest",
     "@nestjs/schematics": "latest",
