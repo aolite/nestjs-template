@@ -35,8 +35,13 @@ async function bootstrap() {
     .setDescription('The Hello World API description')
     .setVersion('1.0')
     .addTag('users')
-    .addBearerAuth()
+    .addBearerAuth(
+      { type: 'http', scheme: 'bearer', bearerFormat: 'jwt', in: 'header' },
+      'access-token',
+    )
     .build();
+
+
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
